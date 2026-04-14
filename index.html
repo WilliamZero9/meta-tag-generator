@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Tag Generator - Free Open Graph & Twitter Card Generator</title>
+  <meta name="description" content="Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Free, instant, copy-paste ready.">
+  <meta name="keywords" content="meta tag generator, open graph generator, twitter card generator, SEO meta tags, HTML meta tags">
+  <meta name="author" content="Zeiyre">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://delicate-hummingbird-564b8c.netlify.app/">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Meta Tag Generator - Free Open Graph & Twitter Card Generator">
+  <meta property="og:description" content="Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Free, instant, copy-paste ready.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://delicate-hummingbird-564b8c.netlify.app/">
+  <meta property="og:site_name" content="Meta Tag Generator">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meta Tag Generator - Free Open Graph & Twitter Card Generator">
+  <meta name="twitter:description" content="Generate perfect HTML meta tags for SEO, Open Graph, and Twitter Cards. Free, instant, copy-paste ready.">
+  <meta name="twitter:image" content="https://delicate-hummingbird-564b8c.netlify.app/og-image.svg">
+  <meta property="og:image" content="https://delicate-hummingbird-564b8c.netlify.app/og-image.svg">
+  <meta property="og:locale" content="en_US">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e10;
+      --surface: #18181b;
+      --surface-2: #1e1e22;
+      --border: #2a2a2e;
+      --border-focus: #6366f1;
+      --text: #e4e4e7;
+      --text-dim: #a1a1aa;
+      --accent: #6366f1;
+      --accent-hover: #818cf8;
+      --success: #22c55e;
+      --radius: 8px;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'SF Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    main {
+      flex: 1;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+
+    .panel-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .field { margin-bottom: 1rem; }
+
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      margin-bottom: 0.35rem;
+    }
+
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 0.875rem;
+      transition: border-color 0.15s;
+    }
+
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--border-focus);
+    }
+
+    .field textarea { resize: vertical; min-height: 72px; }
+
+    .field select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2rem;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    /* Output panel */
+    .output-panel { position: sticky; top: 1.5rem; }
+
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .copy-btn:hover { background: var(--accent-hover); }
+
+    .copy-btn.copied {
+      background: var(--success);
+    }
+
+    .output-code {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      line-height: 1.7;
+      color: var(--text-dim);
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+
+    .output-code .tag { color: #f472b6; }
+    .output-code .attr { color: #38bdf8; }
+    .output-code .val { color: #a5f3fc; }
+    .output-code .comment { color: #52525b; }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--text-dim);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .output-panel { position: static; }
+      header { padding: 2rem 1.5rem 1.5rem; }
+      header h1 { font-size: 1.4rem; }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3a3a3e; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Meta Tag Generator</h1>
+    <p>Generate SEO, Open Graph, and Twitter Card meta tags. Fill in your page details, copy the output.</p>
+  </header>
+
+  <main>
+    <div class="panel">
+      <div class="panel-title">Page Details</div>
+
+      <div class="field">
+        <label for="pageTitle">Page Title</label>
+        <input type="text" id="pageTitle" placeholder="My Awesome Page" maxlength="70">
+      </div>
+
+      <div class="field">
+        <label for="pageDescription">Description</label>
+        <textarea id="pageDescription" placeholder="A brief description of your page content." maxlength="160"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="pageUrl">Page URL</label>
+        <input type="url" id="pageUrl" placeholder="https://example.com/page">
+      </div>
+
+      <div class="field">
+        <label for="imageUrl">Image URL</label>
+        <input type="url" id="imageUrl" placeholder="https://example.com/image.jpg">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="siteName">Site Name</label>
+          <input type="text" id="siteName" placeholder="My Website">
+        </div>
+        <div class="field">
+          <label for="twitterHandle">Twitter Handle</label>
+          <input type="text" id="twitterHandle" placeholder="@username">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="pageType">Type</label>
+          <select id="pageType">
+            <option value="website">Website</option>
+            <option value="article">Article</option>
+            <option value="product">Product</option>
+            <option value="profile">Profile</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="twitterCard">Twitter Card</label>
+          <select id="twitterCard">
+            <option value="summary_large_image">Summary Large Image</option>
+            <option value="summary">Summary</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="locale">Locale</label>
+        <input type="text" id="locale" placeholder="en_US" value="en_US">
+      </div>
+    </div>
+
+    <div class="panel output-panel">
+      <div class="output-header">
+        <div class="panel-title" style="margin-bottom:0">Generated Meta Tags</div>
+        <button class="copy-btn" id="copyBtn" onclick="copyOutput()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="output-code" id="output"></div>
+    </div>
+  </main>
+
+  <footer>
+    Built by <a href="https://github.com/WilliamZero9/zeiyre" target="_blank" rel="noopener">Zeiyre</a>
+    &middot;
+    <a href="https://ko-fi.com/zeiyre" target="_blank" rel="noopener">Support this project</a>
+    &middot;
+    <a href="https://paypal.me/LiamCarey0909" target="_blank" rel="noopener">Tip via PayPal</a>
+  </footer>
+
+  <!-- Support Banner -->
+  <div style="max-width:900px;margin:0 auto 2rem;padding:1.25rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+    <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.6rem"><strong style="color:var(--text)">Find this useful?</strong> This tool is free and always will be. A small tip helps keep it running.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a href="https://ko-fi.com/zeiyre" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1.1rem;background:var(--success);color:#fff;text-decoration:none;border-radius:6px;font-size:0.85rem;font-weight:500;transition:opacity 0.15s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        Buy me a coffee
+      </a>
+      <a href="https://paypal.me/LiamCarey0909" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:0.5rem 1.1rem;background:var(--accent);color:#fff;text-decoration:none;border-radius:6px;font-size:0.85rem;font-weight:500;transition:opacity 0.15s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11l4.08-9.16A2 2 0 0112.89 1H17a4 4 0 014 4c0 1.05-.4 2-.6 2.5L18 12h-4l-1 7H9l-2-8z"/><path d="M4 15l3-8"/></svg>
+        Tip via PayPal
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const fields = ['pageTitle','pageDescription','pageUrl','imageUrl','siteName','twitterHandle','pageType','twitterCard','locale'];
+
+    function esc(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function escHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function tag(el, attrs) {
+      const parts = Object.entries(attrs).map(([k,v]) => `<span class="attr">${escHtml(k)}</span>=<span class="val">"${escHtml(v)}"</span>`);
+      return `<span class="tag">&lt;${escHtml(el)}</span> ${parts.join(' ')}<span class="tag">&gt;</span>`;
+    }
+
+    function generateRaw() {
+      const v = {};
+      fields.forEach(f => v[f] = document.getElementById(f).value.trim());
+
+      const lines = [];
+      lines.push('<!-- Primary Meta Tags -->');
+      if (v.pageTitle) lines.push(`<meta name="title" content="${esc(v.pageTitle)}">`);
+      if (v.pageDescription) lines.push(`<meta name="description" content="${esc(v.pageDescription)}">`);
+
+      lines.push('');
+      lines.push('<!-- Open Graph / Facebook -->');
+      if (v.pageType) lines.push(`<meta property="og:type" content="${esc(v.pageType)}">`);
+      if (v.pageUrl) lines.push(`<meta property="og:url" content="${esc(v.pageUrl)}">`);
+      if (v.pageTitle) lines.push(`<meta property="og:title" content="${esc(v.pageTitle)}">`);
+      if (v.pageDescription) lines.push(`<meta property="og:description" content="${esc(v.pageDescription)}">`);
+      if (v.imageUrl) lines.push(`<meta property="og:image" content="${esc(v.imageUrl)}">`);
+      if (v.siteName) lines.push(`<meta property="og:site_name" content="${esc(v.siteName)}">`);
+      if (v.locale) lines.push(`<meta property="og:locale" content="${esc(v.locale)}">`);
+
+      lines.push('');
+      lines.push('<!-- Twitter -->');
+      if (v.twitterCard) lines.push(`<meta name="twitter:card" content="${esc(v.twitterCard)}">`);
+      if (v.pageUrl) lines.push(`<meta name="twitter:url" content="${esc(v.pageUrl)}">`);
+      if (v.pageTitle) lines.push(`<meta name="twitter:title" content="${esc(v.pageTitle)}">`);
+      if (v.pageDescription) lines.push(`<meta name="twitter:description" content="${esc(v.pageDescription)}">`);
+      if (v.imageUrl) lines.push(`<meta name="twitter:image" content="${esc(v.imageUrl)}">`);
+      if (v.twitterHandle) {
+        const handle = v.twitterHandle.startsWith('@') ? v.twitterHandle : '@' + v.twitterHandle;
+        lines.push(`<meta name="twitter:site" content="${esc(handle)}">`);
+        lines.push(`<meta name="twitter:creator" content="${esc(handle)}">`);
+      }
+
+      return lines.join('\n');
+    }
+
+    function generateHighlighted() {
+      const v = {};
+      fields.forEach(f => v[f] = document.getElementById(f).value.trim());
+
+      const lines = [];
+      lines.push('<span class="comment">&lt;!-- Primary Meta Tags --&gt;</span>');
+      if (v.pageTitle) lines.push(tag('meta', {name:'title', content:v.pageTitle}));
+      if (v.pageDescription) lines.push(tag('meta', {name:'description', content:v.pageDescription}));
+
+      lines.push('');
+      lines.push('<span class="comment">&lt;!-- Open Graph / Facebook --&gt;</span>');
+      if (v.pageType) lines.push(tag('meta', {property:'og:type', content:v.pageType}));
+      if (v.pageUrl) lines.push(tag('meta', {property:'og:url', content:v.pageUrl}));
+      if (v.pageTitle) lines.push(tag('meta', {property:'og:title', content:v.pageTitle}));
+      if (v.pageDescription) lines.push(tag('meta', {property:'og:description', content:v.pageDescription}));
+      if (v.imageUrl) lines.push(tag('meta', {property:'og:image', content:v.imageUrl}));
+      if (v.siteName) lines.push(tag('meta', {property:'og:site_name', content:v.siteName}));
+      if (v.locale) lines.push(tag('meta', {property:'og:locale', content:v.locale}));
+
+      lines.push('');
+      lines.push('<span class="comment">&lt;!-- Twitter --&gt;</span>');
+      if (v.twitterCard) lines.push(tag('meta', {name:'twitter:card', content:v.twitterCard}));
+      if (v.pageUrl) lines.push(tag('meta', {name:'twitter:url', content:v.pageUrl}));
+      if (v.pageTitle) lines.push(tag('meta', {name:'twitter:title', content:v.pageTitle}));
+      if (v.pageDescription) lines.push(tag('meta', {name:'twitter:description', content:v.pageDescription}));
+      if (v.imageUrl) lines.push(tag('meta', {name:'twitter:image', content:v.imageUrl}));
+      if (v.twitterHandle) {
+        const handle = v.twitterHandle.startsWith('@') ? v.twitterHandle : '@' + v.twitterHandle;
+        lines.push(tag('meta', {name:'twitter:site', content:handle}));
+        lines.push(tag('meta', {name:'twitter:creator', content:handle}));
+      }
+
+      return lines.join('\n');
+    }
+
+    function render() {
+      document.getElementById('output').innerHTML = generateHighlighted();
+    }
+
+    function copyOutput() {
+      const raw = generateRaw();
+      navigator.clipboard.writeText(raw).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.classList.add('copied');
+        btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied`;
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+        }, 2000);
+      });
+    }
+
+    // Bind live preview
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      el.addEventListener('input', render);
+      el.addEventListener('change', render);
+    });
+
+    // Initial render
+    render();
+  </script>
+
+  <!-- Prompt Playbook CTA -->
+  <div style="max-width:900px;margin:0 auto 2rem;padding:1.25rem 2rem;background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--success);border-radius:var(--radius);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="flex:1;min-width:200px">
+      <p style="color:var(--text);font-size:0.9rem;font-weight:600;margin-bottom:0.25rem">Prompt Playbook -- 50+ Expert Prompt Templates</p>
+      <p style="color:var(--text-dim);font-size:0.825rem">Tested, copy-paste-ready prompts for developers. Debug faster, write better code, get more from AI tools. <span style="color:var(--success);font-weight:600">$5</span></p>
+    </div>
+    <a href="mailto:zeiyre.agent@gmail.com?subject=Prompt%20Playbook%20Purchase&body=Hi%2C%20I%27d%20like%20to%20purchase%20the%20Prompt%20Playbook%20(%245).%20Please%20send%20payment%20instructions." style="display:inline-block;padding:0.5rem 1.1rem;background:var(--success);color:#fff;text-decoration:none;border-radius:6px;font-size:0.85rem;font-weight:500;white-space:nowrap;transition:opacity 0.15s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Buy via Email</a>
+  </div>
+
+  <!-- Cross-Promotion Footer -->
+  <div style="max-width:900px;margin:3rem auto 2rem;padding:1.5rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);text-align:center">
+    <p style="color:var(--text-dim);font-size:0.85rem;margin-bottom:0.75rem">More free tools from <strong style="color:var(--text)">Zeiyre</strong></p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://zeiyre-hub.netlify.app" target="_blank" rel="noopener" style="color:#fff;background:var(--accent);text-decoration:none;font-size:0.9rem;font-weight:600;padding:0.4rem 1rem;border:1px solid var(--accent);border-radius:6px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">All Zeiyre Tools</a>
+      <a href="https://freelancer-rate-calc.netlify.app" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:0.9rem;padding:0.4rem 1rem;border:1px solid var(--border);border-radius:6px;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">Freelancer Rate Calculator</a>
+      <a href="https://prompt-playbook-landing.netlify.app" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;font-size:0.9rem;padding:0.4rem 1rem;border:1px solid var(--border);border-radius:6px;transition:border-color 0.2s" onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">Prompt Playbook</a>
+    </div>
+  </div>
+
+</body>
+</html>
