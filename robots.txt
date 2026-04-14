@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://delicate-hummingbird-564b8c.netlify.app/sitemap.xml
+Sitemap: https://williamzero9.github.io/meta-tag-generator/sitemap.xml
